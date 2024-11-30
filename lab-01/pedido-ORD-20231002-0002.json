@@ -1,0 +1,59 @@
+{
+  "order_id": "ORD-20231002-0002",
+  "company": {
+    "name": "Alpha Tech Solutions",
+    "cnpj": "23.456.789/0001-88"
+  },
+  "customer": {
+    "first_name": "Carlos",
+    "last_name": "Silva",
+    "cpf": "234.567.890-11",
+    "email": "carlos.silva@example.com",
+    "phone": "+55 11 99876-5432",
+    "address": {
+      "street": "Rua dos Inventores",
+      "number": "100",
+      "complement": "Sala 3",
+      "neighborhood": "Centro",
+      "city": "São Paulo",
+      "state": "SP",
+      "zip_code": "01000-000"
+    }
+  },
+  "order_date": "2023-10-02T14:45:00Z",
+  "items": [
+    {
+      "product_id": "PRD-3003",
+      "description": "Notebook ABC",
+      "quantity": 1,
+      "unit_price": 3500.00
+    },
+    {
+      "product_id": "PRD-4004",
+      "description": "Mouse Gamer",
+      "quantity": 1,
+      "unit_price": 200.00
+    }
+  ],
+  "payment": {
+    "method": "Boleto Bancário",
+    "transaction_id": "TXN-1234567890",
+    "amount": 3700.00
+  },
+  "shipping": {
+    "method": "Normal",
+    "cost": 30.00,
+    "address": {
+      "street": "Rua dos Inventores",
+      "number": "100",
+      "complement": "Sala 3",
+      "neighborhood": "Centro",
+      "city": "São Paulo",
+      "state": "SP",
+      "zip_code": "01000-000"
+    },
+    "expected_delivery_date": "2023-10-05"
+  },
+  "order_status": "Pendente",
+  "notes": "Entregar durante o horário comercial."
+}
