@@ -3,7 +3,7 @@
 Esta documentação descreve os passos para criar e configurar um sistema de pedidos completo usando AWS Lambda, API Gateway, um site estático hospedado em S3, e CloudFront. Ela cobre desde a criação das funções Lambda até a publicação do site, com todos os detalhes técnicos necessários.
 
 ## Índice
-- [1. Criação da Função Lambda](#1-criação-da-função-lambda)
+- [Etapa 1: Criar a Função AWS Lambda](#1-criação-da-função-lambda)
   - [1.1. Criação do Lambda para Listar Pedidos](#11-criação-do-lambda-para-listar-pedidos)
   - [1.2. Criação do Lambda para Detalhes do Pedido](#12-criação-do-lambda-para-detalhes-do-pedido)
   - [1.3. Teste das Funções Lambda](#13-teste-das-funções-lambda)
@@ -15,7 +15,7 @@ Esta documentação descreve os passos para criar e configurar um sistema de ped
   - [3.1. Criação do Site Estático](#31-criação-do-site-estático)
   - [3.2. Publicação no S3 e CloudFront](#32-publicação-no-s3-e-cloudfront)
 
-## 1. Criação da Função Lambda
+## Etapa 1: Criar a Função AWS Lambda
 
 Nesta seção, vamos criar duas funções Lambda: uma para listar todos os pedidos e outra para mostrar os detalhes de um pedido específico.
 
