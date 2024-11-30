@@ -238,7 +238,7 @@ Para que a função Lambda possa acessar o Amazon S3 e o DynamoDB, precisamos ad
 1. **Acessar a Role IAM da Função Lambda:**
 
    - Na página da função Lambda, vá para a seção **Configuration** > **Permissions**.
-   - Em **Execution role**, clique no nome da role (será algo como `ValidaPedido-role-abc123`), o que abrirá a console do IAM em uma nova aba.
+   - Em **Execution role**, clique no nome da role (será algo como `put_orders-role-abc123`), o que abrirá a console do IAM em uma nova aba.
 
 2. **Adicionar Política de Acesso ao S3:**
 
