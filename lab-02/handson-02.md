@@ -15,7 +15,7 @@ Esta documentação descreve os passos para criar e configurar um sistema de ped
   - [3.1. Criação do Site Estático](#31-criação-do-site-estático)
   - [3.2. Publicação no S3 e CloudFront](#32-publicação-no-s3-e-cloudfront)
 
-## 1. Criação da função lambda
+## Etapa 1. Criação da função lambda
 
 Nesta seção, vamos criar duas funções Lambda: uma para listar todos os pedidos e outra para mostrar os detalhes de um pedido específico.
 
