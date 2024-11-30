@@ -265,21 +265,6 @@ Para que a função Lambda possa acessar o Amazon S3 e o DynamoDB, precisamos ad
        }
        ```
 
-     - **Exemplo com o bucket `translogistica-pedidos`:**
-
-       ```json
-       {
-         "Version": "2012-10-17",
-         "Statement": [
-           {
-             "Effect": "Allow",
-             "Action": "s3:GetObject",
-             "Resource": "arn:aws:s3:::translogistica-pedidos/novos-pedidos/*"
-           }
-         ]
-       }
-       ```
-
    - Clique em **Next**.
 
    - Em **Policy name** digite `LambdaS3GetObjectPolicy`
@@ -304,21 +289,6 @@ Para que a função Lambda possa acessar o Amazon S3 e o DynamoDB, precisamos ad
              "Effect": "Allow",
              "Action": "dynamodb:PutItem",
              "Resource": "arn:aws:dynamodb:<YOUR_REGION>:<YOUR_ACCOUNT_ID>:table/PedidosValidos"
-           }
-         ]
-       }
-       ```
-
-     - **Exemplo com região `us-east-1` e conta `123456789012`:**
-
-       ```json
-       {
-         "Version": "2012-10-17",
-         "Statement": [
-           {
-             "Effect": "Allow",
-             "Action": "dynamodb:PutItem",
-             "Resource": "arn:aws:dynamodb:us-east-1:123456789012:table/PedidosValidos"
            }
          ]
        }
