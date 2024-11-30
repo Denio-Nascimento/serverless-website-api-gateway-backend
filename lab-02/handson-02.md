@@ -99,6 +99,48 @@ Nesta seção, vamos criar duas funções Lambda: uma para listar todos os pedid
    - Clique em **Edit**.
    - Em **Timeout** configure para 10 segundos `0` min `10` sec
    - Clique em **Save**.
+  
+6. **Acessar a Role IAM da Função Lambda:**
+   Para que a função Lambda possa acessar o DynamoDB, precisamos adicionar as políticas de permissão adequadas 
+à role de execução da Lambda.
+
+   - Na página da função Lambda, vá para a seção **Configuration** > **Permissions**.
+   - Em **Execution role**, clique no nome da role (será algo como `put_orders-role-abc123`), o que abrirá a console do IAM em uma nova aba.
+
+2. **Adicionar Política de Acesso ao DynamoDB:**
+
+   - Na página da role IAM, clique novamente em **Add permissions**.
+
+   - Escolha **Create inline policy**.
+
+   - **Definir a Política:**
+
+     - Selecione a aba **JSON** e cole o seguinte código, substituindo `<YOUR_REGION>` pela sua região (por exemplo, `us-east-1`) e `<YOUR_ACCOUNT_ID>` pelo ID da sua conta AWS (este pode ser encontrado no canto superior direito da console da AWS; clique no nome do usuário e o ID da conta aparecerá como 'Account ID: 123456789012'; é um número de 12 dígitos):
+
+       ```json
+       {
+         "Version": "2012-10-17",
+         "Statement": [
+           {
+             "Effect": "Allow",
+             "Action": [
+               "dynamodb:Scan",
+               "dynamodb:GetItem"
+             ],
+             "Resource": "arn:aws:dynamodb:<YOUR_REGION>:<YOUR_ACCOUNT_ID>:table/PedidosValidos"
+           }
+         ]
+       }
+       ```
+
+   - Clique em **Next**.
+
+   - Em **Policy name** digite `LambdaDynamoDBPolicy`
+
+   - Clique em **Create policy**.
+
+**Nota:** Certifique-se de substituir `<YOUR_REGION>` e `<YOUR_ACCOUNT_ID>` pelos valores corretos.
+
 ---
 
 ### 1.2. Criação do Lambda para Detalhes do Pedido
@@ -197,35 +239,51 @@ Nesta seção, vamos criar duas funções Lambda: uma para listar todos os pedid
    - Clique em **Save**.
 ---
 
-### 1.3. Criação das Políticas IAM
 
-Para que as funções Lambda possam acessar o DynamoDB, precisamos criar políticas IAM específicas.
+6. **Acessar a Role IAM da Função Lambda:**
+   Para que a função Lambda possa acessar o DynamoDB, precisamos adicionar as políticas de permissão adequadas 
+à role de execução da Lambda.
 
-1. **Acessar a Role IAM da Função Lambda**:
-   - No console do AWS Lambda, vá para a aba "Configuration" da função Lambda.
-   - Clique em "Permissions" e depois clique no nome da role para abrir o console do IAM.
+   - Na página da função Lambda, vá para a seção **Configuration** > **Permissions**.
+   - Em **Execution role**, clique no nome da role (será algo como `put_orders-role-abc123`), o que abrirá a console do IAM em uma nova aba.
 
-2. **Adicionar Política de Acesso ao DynamoDB**:
-   - Clique em "Add permissions" e escolha "Create inline policy".
-   - Selecione a aba "JSON" e insira o seguinte código, substituindo `<YOUR_REGION>` e `<YOUR_ACCOUNT_ID>` pelos valores corretos:
-     ~~~json
-     {
-       "Version": "2012-10-17",
-       "Statement": [
-         {
-           "Effect": "Allow",
-           "Action": [
-             "dynamodb:Scan",
-             "dynamodb:GetItem"
-           ],
-           "Resource": "arn:aws:dynamodb:<YOUR_REGION>:<YOUR_ACCOUNT_ID>:table/PedidosValidos"
-         }
-       ]
-     }
-     ~~~
-   - Clique em "Review policy", dê um nome como `LambdaDynamoDBAccessPolicy`, e clique em "Create policy".
+6.1. **Adicionar Política de Acesso ao DynamoDB:**
 
-### 1.4. Teste das Funções Lambda
+   - Na página da role IAM, clique novamente em **Add permissions**.
+
+   - Escolha **Create inline policy**.
+
+   - **Definir a Política:**
+
+     - Selecione a aba **JSON** e cole o seguinte código, substituindo `<YOUR_REGION>` pela sua região (por exemplo, `us-east-1`) e `<YOUR_ACCOUNT_ID>` pelo ID da sua conta AWS (este pode ser encontrado no canto superior direito da console da AWS; clique no nome do usuário e o ID da conta aparecerá como 'Account ID: 123456789012'; é um número de 12 dígitos):
+
+       ```json
+       {
+         "Version": "2012-10-17",
+         "Statement": [
+           {
+             "Effect": "Allow",
+             "Action": [
+               "dynamodb:Scan",
+               "dynamodb:GetItem"
+             ],
+             "Resource": "arn:aws:dynamodb:<YOUR_REGION>:<YOUR_ACCOUNT_ID>:table/PedidosValidos"
+           }
+         ]
+       }
+       ```
+
+   - Clique em **Next**.
+
+   - Em **Policy name** digite `LambdaDynamoDBPolicy`
+
+   - Clique em **Create policy**.
+
+**Nota:** Certifique-se de substituir `<YOUR_REGION>` e `<YOUR_ACCOUNT_ID>` pelos valores corretos.
+
+---
+
+### 1.3. Teste das Funções Lambda
 
 1. Teste ambas as funções Lambda no console da AWS.
 3. **Teste de Listagem de Pedidos**:
