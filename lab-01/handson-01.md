@@ -318,7 +318,7 @@ Para que a função Lambda possa acessar o Amazon S3 e o DynamoDB, precisamos ad
    - No campo **Event name** Dê um nome ao evento de teste, como `TestePedidoS3`.
    - Em **Template - optional** selecione **S3-Put**.
    - Preencha os campos com as informações do bucket e do arquivo:
-     - **Bucket:** `translogistica-pedidos`
+     - **Bucket:** `<BUCKET-NAME>` exemplo: `translogistica-pedidos` 
      - **Object key:** `novos-pedidos/pedido-ORD-20231001-0001.json`
    - Ou substitua o texto do **Bloco Event JSON** pelo texto abaixo:
      - Substitua o **Bucket:** `translogistica-pedidos` pelo nome do bucket que você criou na Etapa 1    
