@@ -147,8 +147,8 @@ Nesta atividade, você irá:
 2. **Criar uma Nova Função:**
 
    - Clique em **Create function**.
-   - **Function name:** `ValidaPedido`
-   - **Runtime:** **Python 3.9** (ou a versão mais recente disponível)
+   - **Function name:** `put_orders`
+   - **Runtime:** **Python 3.12** (ou a versão mais recente disponível)
    - **Permissions:**
 
      - Em **Change default execution role**, selecione **Create a new role with basic Lambda permissions**.
