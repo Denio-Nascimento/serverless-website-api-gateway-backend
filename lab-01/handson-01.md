@@ -133,6 +133,8 @@ Nesta atividade, você irá:
    - Clique em **Create table**.
    - **Table name:** `PedidosValidos`
    - **Partition key:** `order_id` (Tipo: **String**)
+   - Em **Table settings** Selecione **Table settings**
+   - Logo abaixo certifique-se que em **Capacity mode** está como **On-demand**
    - Mantenha as demais configurações padrão.
    - Clique em **Create table**.
 
