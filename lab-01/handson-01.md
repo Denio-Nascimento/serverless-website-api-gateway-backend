@@ -260,7 +260,7 @@ Para que a função Lambda possa acessar o Amazon S3 e o DynamoDB, precisamos ad
                 ],
              "Resource": [
                       "arn:aws:s3:::<YOUR_BUCKET_NAME>/novos-pedidos/*",
-                      "arn:aws:s3:::<YOUR_BUCKET_NAME>/novos-pedidos",
+                      "arn:aws:s3:::<YOUR_BUCKET_NAME>/novos-pedidos"
                 ]
            }
          ]
