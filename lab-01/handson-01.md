@@ -315,7 +315,7 @@ Para que a função Lambda possa acessar o Amazon S3 e o DynamoDB, precisamos ad
 2. **Criar um Evento de Teste:**
 
    - Clique em **Test** no topo da página da função Lambda.
-   - Dê um nome ao evento de teste, como `TestePedidoS3`.
+   - No campo **Event name** Dê um nome ao evento de teste, como `TestePedidoS3`.
    - Em **Template - optional** selecione **S3-Put**.
    - Preencha os campos com as informações do bucket e do arquivo:
      - **Bucket:** `translogistica-pedidos`
