@@ -1,0 +1,59 @@
+{
+  "order_id": "ORD-20231001-0001",
+  "company": {
+    "name": "Tech Solutions Ltda",
+    "cnpj": "12.345.678/0001-99"
+  },
+  "customer": {
+    "first_name": "Mariana",
+    "last_name": "Alves",
+    "cpf": "123.456.789-00",
+    "email": "mariana.alves@example.com",
+    "phone": "+55 21 91234-5678",
+    "address": {
+      "street": "Avenida das Américas",
+      "number": "5000",
+      "complement": "Bloco 2, Apt 301",
+      "neighborhood": "Barra da Tijuca",
+      "city": "Rio de Janeiro",
+      "state": "RJ",
+      "zip_code": "22640-102"
+    }
+  },
+  "order_date": "2023-10-01T10:30:00Z",
+  "items": [
+    {
+      "product_id": "PRD-1001",
+      "description": "Smartphone XYZ",
+      "quantity": 1,
+      "unit_price": 2500.00
+    },
+    {
+      "product_id": "PRD-2002",
+      "description": "Fone de Ouvido Bluetooth",
+      "quantity": 2,
+      "unit_price": 150.00
+    }
+  ],
+  "payment": {
+    "method": "Cartão de Crédito",
+    "transaction_id": "TXN-9876543210",
+    "amount": 2800.00
+  },
+  "shipping": {
+    "method": "Express",
+    "cost": 50.00,
+    "address": {
+      "street": "Avenida das Américas",
+      "number": "5000",
+      "complement": "Bloco 2, Apt 301",
+      "neighborhood": "Barra da Tijuca",
+      "city": "Rio de Janeiro",
+      "state": "RJ",
+      "zip_code": "22640-102"
+    },
+    "expected_delivery_date": "2023-10-03"
+  },
+  "order_status": "Pendente",
+  "notes": "Entregar no período da tarde."
+}
