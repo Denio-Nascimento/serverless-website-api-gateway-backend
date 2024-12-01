@@ -85,19 +85,33 @@ Para garantir que o site **não fique público** e seja acessado de forma segura
 1. **Crie uma Distribuição CloudFront**:
 
    - No console da AWS, acesse o Amazon CloudFront e crie uma nova distribuição.
+      - Clique em **Create distribution**    
    - **Origem**: Selecione o bucket S3 que hospeda o site.
-     - Ao selecionar a origem, escolha o bucket através do ARN (Amazon Resource Name) para garantir a configuração correta.
+      - Selecine **Amazon S3** e em seguida o nome do bucket que você criou.    
+   - **Origin access**: Selecione a opção **Origin access control settings (recommended)**
+      - Clique em **Create new OAC**.
+      - Vai abrir uma nova janela chamada **Create new OAC**.
+         - **Description - optional** Digite `Site Pedidos`
+         - Clique em Create
+   - Em **Allowed HTTP methods** Selecione **GET, HEAD, OPTIONS**
+   - Em **Web Application Firewall (WAF)** Selecione **Do not enable security protections**
+   - Em **Cache key and origin requests** Selecione **Legacy cache settings**
+
 
 2. **Configure o Controle de Acesso à Origem (OAC)**:
 
-   - Na seção **"Identity and Access"**, selecione **"Create a new origin access control"**.
-   - Nomeie o OAC de forma significativa, como `OAC-Sistema-Pedidos`.
-   - **Signing Behavior**: Certifique-se de que a opção de assinatura está habilitada para que o CloudFront possa acessar o conteúdo privado do S3.
+   - No console da AWS, acesse o Amazon CloudFront e crie uma nova distribuição.
+   - Clique no nome da Distribuição do cloud front que você criou.
+   - Entra aba **Origins**, selecione Origins criada e clica em **Edit**
+   - Clique na opção **Copy policy**
+   - Abra o bloco de notas e digite **Crtl + C**
+      -  Observe que foi gerado uma policy para ser usado dentro do S3
 
 3. **Atualize a Política do Bucket S3**:
 
-   - O CloudFront irá gerar uma política que precisa ser associada ao bucket S3.
-   - No bucket S3, acesse a seção **Permissões** e adicione a política fornecida pelo CloudFront.
+   - Pegar(ou copiar) do CloudFront a política que precisa ser associada ao bucket S3. (passo anterior)
+   - Vai até o Amazon S3, clique no Bucket refernete ao site e acesse a seção **Permissões** e adicione a política fornecida pelo CloudFront.
+   - Em **Bucket Policy** clique em **Edit** e cole, politica gerada e clique em **Save changes**.
    - Essa política permitirá que o CloudFront acesse o conteúdo do bucket, enquanto bloqueia o acesso direto ao S3.
 
 4. **Configurações Adicionais da Distribuição CloudFront**:
