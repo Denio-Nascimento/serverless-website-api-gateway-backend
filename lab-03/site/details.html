@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Pedido</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #007bff;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 15px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        ul li {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+
+        .item-header {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .submit-btn {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .submit-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Detalhes do Pedido</h1>
+    <form id="order-form">
+        <label for="order_id">ID do Pedido</label>
+        <input type="text" id="order_id" name="order_id" readonly>
+
+        <label for="order_date">Data do Pedido</label>
+        <input type="text" id="order_date" name="order_date" readonly>
+
+        <label for="order_status">Status</label>
+        <input type="text" id="order_status" name="order_status" readonly>
+
+        <label for="customer_name">Cliente</label>
+        <input type="text" id="customer_name" name="customer_name" readonly>
+
+        <label for="customer_email">Email</label>
+        <input type="text" id="customer_email" name="customer_email" readonly>
+
+        <label for="customer_phone">Telefone</label>
+        <input type="text" id="customer_phone" name="customer_phone" readonly>
+
+        <label>Itens do Pedido</label>
+        <ul id="items-list"></ul>
+
+        <label for="payment_method">Método de Pagamento</label>
+        <input type="text" id="payment_method" name="payment_method" readonly>
+
+        <label for="payment_amount">Valor Total</label>
+        <input type="text" id="payment_amount" name="payment_amount" readonly>
+
+        <label for="shipping_method">Método de Entrega</label>
+        <input type="text" id="shipping_method" name="shipping_method" readonly>
+
+        <label for="shipping_address">Endereço de Entrega</label>
+        <textarea id="shipping_address" name="shipping_address" rows="3" readonly></textarea>
+
+        <label for="shipping_cost">Custo de Entrega</label>
+        <input type="text" id="shipping_cost" name="shipping_cost" readonly>
+
+        <label for="shipping_date">Data Estimada de Entrega</label>
+        <input type="text" id="shipping_date" name="shipping_date" readonly>
+
+        <button type="button" class="submit-btn">Salvar Alterações</button>
+    </form>
+</body>
+<script src="details_form.js"></script>
+</html>
