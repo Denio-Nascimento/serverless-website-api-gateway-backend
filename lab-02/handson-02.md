@@ -41,46 +41,46 @@ Nesta seção, vamos criar duas funções Lambda: uma para listar todos os pedid
    - Apague o código existente e cole o código abaixo:
 
    ~~~python
-    import boto3
-    import json
-    import os
-    
-    def lambda_handler(event, context):
-        dynamodb = boto3.resource('dynamodb')
-        table_name = os.environ.get('DYNAMODB_TABLE', 'PedidosValidos')
-        table = dynamodb.Table(table_name)
-        
-        try:
-            response = table.scan(
-                ProjectionExpression="#oi, order_date, order_status, #cust.#fname, #cust.#lname",
-                ExpressionAttributeNames={
-                    '#oi': 'order_id',
-                    '#cust': 'customer',
-                    '#fname': 'first_name',
-                    '#lname': 'last_name'
-                }
-            )
-            items = response.get('Items', [])
-            
-            return {
-                'statusCode': 200,
-                'body': json.dumps(items),
-                'headers': {
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*'
-                }
-            }
-            
-        except Exception as e:
-            print(f"Erro ao fazer scan na tabela DynamoDB: {e}")
-            return {
-                'statusCode': 500,
-                'body': json.dumps({'error': 'Não foi possível recuperar os pedidos'}),
-                'headers': {
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*'
-                }
-            }
+   import boto3
+   import json
+   import os
+   
+   def lambda_handler(event, context):
+       dynamodb = boto3.resource('dynamodb')
+       table_name = os.environ.get('DYNAMODB_TABLE', 'PedidosValidos')
+       table = dynamodb.Table(table_name)
+       
+       try:
+           response = table.scan(
+               ProjectionExpression="#oi, order_date, order_status, #cust.#fname, #cust.#lname",
+               ExpressionAttributeNames={
+                   '#oi': 'order_id',
+                   '#cust': 'customer',
+                   '#fname': 'first_name',
+                   '#lname': 'last_name'
+               }
+           )
+           items = response.get('Items', [])
+           
+           return {
+               'statusCode': 200,
+               'body': json.dumps(items),
+               'headers': {
+                   'Content-Type': 'application/json',
+                   'Access-Control-Allow-Origin': '*'
+               }
+           }
+           
+       except Exception as e:
+           print(f"Erro ao fazer scan na tabela DynamoDB: {e}")
+           return {
+               'statusCode': 500,
+               'body': json.dumps({'error': 'Não foi possível recuperar os pedidos'}),
+               'headers': {
+                   'Content-Type': 'application/json',
+                   'Access-Control-Allow-Origin': '*'
+               }
+           }
    ~~~
  - Clique no botão **Deploy**
 
