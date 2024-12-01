@@ -304,17 +304,72 @@ Nesta seção, vamos criar duas funções Lambda: uma para listar todos os pedid
 
 ## 2. Configuração do API Gateway
 
+Nesta seção, vamos configurar o Amazon API Gateway para integrar as funções Lambda que criamos, permitindo que elas sejam acessadas por meio de URLs públicas.
+
 ### 2.1. Criação dos Métodos
 
-1. No console do API Gateway, crie um novo API REST.
-2. Adicione um método `GET` chamado `/orders` e vincule-o à função Lambda `list_orders_lambda`.
-3. Adicione outro método `GET` para `/orders/{order_id}` e vincule-o ao `get_order_lambda`.
+1. **Acessar o API Gateway:**
+   - No console da AWS, selecione **API Gateway** no menu de serviços.
+
+2. **Criar uma Nova API:**
+   - Clique em **Create API** e selecione **REST API**.
+   - Em **Protocol**, selecione **REST**.
+   - Em **Create new API**, selecione **New API**.
+   - **API name:** `OrderServiceAPI`
+   - Clique em **Create API**.
+
+3. **Adicionar Recursos e Métodos:**
+   - Clique em **Actions** e selecione **Create Resource**.
+   - **Resource Name:** `orders`
+   - **Resource Path:** `/orders`
+   - Marque a opção **Enable API Gateway CORS** para habilitar CORS automaticamente.
+   - Clique em **Create Resource**.
+
+4. **Adicionar o Método GET para Listar Pedidos:**
+   - Selecione o recurso `/orders` criado.
+   - Clique em **Actions** e selecione **Create Method**.
+   - Escolha **GET** e clique no ícone de confirmação.
+   - Em **Integration type**, selecione **Lambda Function**.
+   - Marque a opção **Use Lambda Proxy integration**.
+   - **Lambda Region:** selecione a região onde as funções Lambda foram criadas.
+   - **Lambda Function:** `list_orders`
+   - Clique em **Save**.
+   - Conceda as permissões necessárias quando solicitado.
+
+5. **Adicionar o Método GET para Detalhes do Pedido:**
+   - Clique em **Actions** e selecione **Create Resource**.
+   - **Resource Name:** `{order_id}`
+   - **Resource Path:** `/orders/{order_id}`
+   - Marque a opção **Enable API Gateway CORS**.
+   - Clique em **Create Resource**.
+   - Selecione o recurso `/orders/{order_id}` criado.
+   - Clique em **Actions** e selecione **Create Method**.
+   - Escolha **GET** e clique no ícone de confirmação.
+   - Em **Integration type**, selecione **Lambda Function**.
+   - Marque a opção **Use Lambda Proxy integration**.
+   - **Lambda Region:** selecione a região onde as funções Lambda foram criadas.
+   - **Lambda Function:** `get_order`
+   - Clique em **Save**.
+   - Conceda as permissões necessárias quando solicitado.
 
 ### 2.2. Configuração do Proxy e CORS
 
-1. **Proxy**: Marque a opção de integração do Lambda como "Lambda Proxy" para ambos os métodos, permitindo que a função Lambda processe o evento inteiro.
-2. **CORS**: Habilite o CORS em todos os recursos e métodos para permitir que o site estático acesse o API Gateway.
-   - No console do API Gateway, clique em "Ações" e depois "Enable CORS".
+1. **Proxy:**
+   - Para ambos os métodos (`GET /orders` e `GET /orders/{order_id}`), marque a opção de integração do Lambda como **Lambda Proxy**, permitindo que as funções Lambda processem o evento inteiro e retornem uma resposta completa ao cliente.
+
+2. **CORS:**
+   - No console do API Gateway, clique em **Actions** e depois em **Enable CORS**.
+   - Selecione todos os métodos (incluindo `GET`) e clique em **Enable CORS and replace existing CORS headers**.
+   - Clique em **Confirm** para aplicar as configurações de CORS em todos os recursos e métodos, permitindo que o site estático hospedado em S3 acesse o API Gateway sem restrições de origem.
+
+3. **Deploy da API:**
+   - Clique em **Actions** e selecione **Deploy API**.
+   - **Deployment stage:** Clique em **[New Stage]**.
+   - **Stage name:** `prod`
+   - Clique em **Deploy**.
+   - A URL da API será gerada e exibida como **Invoke URL**. Guarde essa URL, pois ela será usada pelo site estático para acessar os endpoints de pedidos.
+
+
 
 ## 3. Criação e Hospedagem do Site Estático
 
