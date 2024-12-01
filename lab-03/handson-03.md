@@ -63,22 +63,22 @@ Para garantir que o site **não fique público** e seja acessado de forma segura
 1. **Crie um Bucket S3**:
 
    - No console da AWS, acesse o Amazon S3 e crie um novo bucket para hospedar o site.
-   - **Nome do Bucket**: Escolha um nome exclusivo, como `translogistica-site-0001`.
    - **Região**: Selecione a região que melhor se adequa às suas necessidades.
-   - **Configuração Pública**: **Mantenha o bucket privado** para restringir o acesso público.
+   - **Nome do Bucket**: Escolha um nome exclusivo, como `translogistica-site-0001`.
+   - Clique em Create bucket.
 
-2. **Desative o Acesso Público**:
-
+2. NOTA: **Desative o Acesso Público**:
    - Nas configurações do bucket, verifique se o bloqueio de acesso público está ativado para todas as opções.
    - Isso garantirá que o bucket não possa ser acessado diretamente por usuários não autorizados.
 
-3. **Carregue os Arquivos do Site**:
+3. NOTA: **Não habilite a Hospedagem de Site Estático do S3**:
+   - Não habilite a hospedagem de site estático no S3, já que iremos servir o conteúdo através do CloudFront, que oferecerá o acesso seguro ao conteúdo.
 
+4. **Carregue os Arquivos do Site**:
+   
    - Carregue os arquivos `index.html`, `details.html`, `list.js`, `details_form.js`, `styles.css` e quaisquer outros recursos necessários no bucket.
 
-4. **Desabilite a Hospedagem de Site Estático do S3**:
 
-   - Não habilite a hospedagem de site estático no S3, já que iremos servir o conteúdo através do CloudFront, que oferecerá o acesso seguro ao conteúdo.
 
 ### 2.2. Configuração do CloudFront com Controle de Acesso à Origem (OAC)
 
