@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Pedidos</title>
+    <style>
+        /* Estilos Gerais */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #007bff;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #e9ecef;
+            cursor: pointer;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <h1>Lista de Pedidos</h1>
+
+    <!-- Tabela de Pedidos -->
+    <table>
+        <thead>
+            <tr>
+                <th>ID do Pedido</th>
+                <th>Data</th>
+                <th>Status</th>
+                <th>Cliente</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody id="orders-body">
+            <!-- Os pedidos serão carregados dinamicamente -->
+        </tbody>
+    </table>
+
+    <footer>
+        <p>© 2024 - Sistema de Pedidos</p>
+    </footer>
+
+    <script src="list.js"></script>
+</body>
+</html>
