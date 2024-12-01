@@ -1,124 +1,136 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Metadados -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Detalhes do Pedido</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            background-color: #f8f9fa;
-            color: #333;
-        }
-
-        h1 {
-            text-align: center;
-            color: #007bff;
-        }
-
-        form {
-            background-color: #fff;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        label {
-            font-weight: bold;
-            display: block;
-            margin-top: 15px;
-        }
-
-        input, select, textarea {
-            width: 100%;
-            padding: 8px;
-            margin-top: 5px;
-            margin-bottom: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        ul li {
-            background-color: #f9f9f9;
-            border: 1px solid #ddd;
-            padding: 10px;
-            margin-bottom: 10px;
-            border-radius: 5px;
-        }
-
-        .item-header {
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-
-        .submit-btn {
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-
-        .submit-btn:hover {
-            background-color: #0056b3;
-        }
-    </style>
+    <!-- CSS do Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <!-- Fontes Google -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- Sua folha de estilo personalizada -->
+    <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-    <h1>Detalhes do Pedido</h1>
-    <form id="order-form">
-        <label for="order_id">ID do Pedido</label>
-        <input type="text" id="order_id" name="order_id" readonly>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="#">Sistema de Pedidos</a>
+    </nav>
 
-        <label for="order_date">Data do Pedido</label>
-        <input type="text" id="order_date" name="order_date" readonly>
+    <!-- Cabeçalho -->
+    <header class="header mb-5">
+        <div class="container text-center">
+            <h1 class="animate__animated animate__fadeInDown">Detalhes do Pedido</h1>
+            <p class="lead animate__animated animate__fadeInUp">Visualize as informações do pedido.</p>
+        </div>
+    </header>
 
-        <label for="order_status">Status</label>
-        <input type="text" id="order_status" name="order_status" readonly>
+    <!-- Loader -->
+    <div id="loader" class="text-center my-5">
+        <div class="spinner-border text-primary" role="status">
+            <span class="sr-only">Carregando...</span>
+        </div>
+    </div>
 
-        <label for="customer_name">Cliente</label>
-        <input type="text" id="customer_name" name="customer_name" readonly>
+    <!-- Conteúdo Principal -->
+    <div class="container mb-5">
+        <!-- Formulário de Detalhes do Pedido -->
+        <form id="order-form">
+            <!-- Informações do Pedido -->
+            <h3 class="mb-4">Informações do Pedido</h3>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="order_id">ID do Pedido</label>
+                    <input type="text" class="form-control" id="order_id" name="order_id" readonly>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="order_date">Data do Pedido</label>
+                    <input type="text" class="form-control" id="order_date" name="order_date" readonly>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="order_status">Status do Pedido</label>
+                <input type="text" class="form-control" id="order_status" name="order_status" readonly>
+            </div>
 
-        <label for="customer_email">Email</label>
-        <input type="text" id="customer_email" name="customer_email" readonly>
+            <!-- Informações do Cliente -->
+            <h3 class="my-4">Informações do Cliente</h3>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="customer_name">Nome do Cliente</label>
+                    <input type="text" class="form-control" id="customer_name" name="customer_name" readonly>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="customer_email">Email</label>
+                    <input type="email" class="form-control" id="customer_email" name="customer_email" readonly>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="customer_phone">Telefone</label>
+                <input type="text" class="form-control" id="customer_phone" name="customer_phone" readonly>
+            </div>
 
-        <label for="customer_phone">Telefone</label>
-        <input type="text" id="customer_phone" name="customer_phone" readonly>
+            <!-- Itens do Pedido -->
+            <h3 class="my-4">Itens do Pedido</h3>
+            <ul class="list-group mb-4" id="items-list">
+                <!-- Os itens serão carregados dinamicamente -->
+            </ul>
 
-        <label>Itens do Pedido</label>
-        <ul id="items-list"></ul>
+            <!-- Informações de Pagamento -->
+            <h3 class="my-4">Informações de Pagamento</h3>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="payment_method">Método de Pagamento</label>
+                    <input type="text" class="form-control" id="payment_method" name="payment_method" readonly>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="payment_amount">Valor Pago</label>
+                    <input type="text" class="form-control" id="payment_amount" name="payment_amount" readonly>
+                </div>
+            </div>
 
-        <label for="payment_method">Método de Pagamento</label>
-        <input type="text" id="payment_method" name="payment_method" readonly>
+            <!-- Informações de Envio -->
+            <h3 class="my-4">Informações de Envio</h3>
+            <div class="form-group">
+                <label for="shipping_method">Método de Envio</label>
+                <input type="text" class="form-control" id="shipping_method" name="shipping_method" readonly>
+            </div>
+            <div class="form-group">
+                <label for="shipping_address">Endereço de Envio</label>
+                <textarea class="form-control" id="shipping_address" name="shipping_address" rows="3" readonly></textarea>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="shipping_cost">Custo de Envio</label>
+                    <input type="text" class="form-control" id="shipping_cost" name="shipping_cost" readonly>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="shipping_date">Data de Entrega Estimada</label>
+                    <input type="text" class="form-control" id="shipping_date" name="shipping_date" readonly>
+                </div>
+            </div>
 
-        <label for="payment_amount">Valor Total</label>
-        <input type="text" id="payment_amount" name="payment_amount" readonly>
+            <!-- Botão Voltar -->
+            <a href="index.html" class="btn btn-secondary btn-lg">Voltar</a>
+        </form>
+    </div>
 
-        <label for="shipping_method">Método de Entrega</label>
-        <input type="text" id="shipping_method" name="shipping_method" readonly>
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-3">
+        <p>© 2024 - Sistema de Pedidos</p>
+    </footer>
 
-        <label for="shipping_address">Endereço de Entrega</label>
-        <textarea id="shipping_address" name="shipping_address" rows="3" readonly></textarea>
-
-        <label for="shipping_cost">Custo de Entrega</label>
-        <input type="text" id="shipping_cost" name="shipping_cost" readonly>
-
-        <label for="shipping_date">Data Estimada de Entrega</label>
-        <input type="text" id="shipping_date" name="shipping_date" readonly>
-
-        <button type="button" class="submit-btn">Salvar Alterações</button>
-    </form>
+    <!-- Scripts -->
+    <!-- jQuery e Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Seu script personalizado -->
+    <script src="details_form.js"></script>
 </body>
-<script src="details_form.js"></script>
 </html>
+
+
