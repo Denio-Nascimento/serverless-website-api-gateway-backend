@@ -93,6 +93,7 @@ Para garantir que o site **não fique público** e seja acessado de forma segura
       - Vai abrir uma nova janela chamada **Create new OAC**.
          - **Description - optional** Digite `Site Pedidos`
          - Clique em Create
+   - **Default Root Object**: Defina `index.html` como o **Default Root Object**. Isso permitirá que a URL do CloudFront abra automaticamente o conteúdo do `index.html`, evitando a necessidade de especificá-lo manualmente na URL.
    - Em **Allowed HTTP methods** Selecione **GET, HEAD, OPTIONS**
    - Em **Web Application Firewall (WAF)** Selecione **Do not enable security protections**
    - Em **Cache key and origin requests** Selecione **Legacy cache settings**
