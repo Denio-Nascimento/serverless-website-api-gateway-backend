@@ -20,157 +20,29 @@ Nesta documentação, detalharemos passo a passo como **criar**, **configurar** 
 
 ### 1.1. Arquivos Necessários
 
-O site é composto por dois arquivos HTML principais e dois arquivos JavaScript correspondentes:
+O site é composto por cinco arquivos principais, que estão organizados dentro de pastas específicas no repositório:
 
 1. **index.html**: Exibe uma lista de pedidos. Cada pedido listado tem um link para visualizar seus detalhes completos.
 
-   ```html
-   <!DOCTYPE html>
-   <html lang="pt-BR">
-   <head>
-       <meta charset="UTF-8">
-       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-       <title>Lista de Pedidos</title>
-       <link rel="stylesheet" href="styles.css">
-   </head>
-   <body>
-       <h1>Lista de Pedidos</h1>
-       <table>
-           <thead>
-               <tr>
-                   <th>ID do Pedido</th>
-                   <th>Data</th>
-                   <th>Status</th>
-                   <th>Cliente</th>
-                   <th>Ações</th>
-               </tr>
-           </thead>
-           <tbody id="orders-body">
-               <!-- Os pedidos serão carregados dinamicamente -->
-           </tbody>
-       </table>
-       <footer>
-           <p>© 2024 - Sistema de Pedidos</p>
-       </footer>
-       <script src="list.js"></script>
-   </body>
-   </html>
-   ```
-
 2. **details.html**: Exibe os detalhes completos de um pedido específico. O formulário é preenchido dinamicamente com os dados recebidos da API.
 
-   ```html
-   <!DOCTYPE html>
-   <html lang="pt-BR">
-   <head>
-       <meta charset="UTF-8">
-       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-       <title>Detalhes do Pedido</title>
-       <link rel="stylesheet" href="styles.css">
-   </head>
-   <body>
-       <h1>Detalhes do Pedido</h1>
-       <form id="order-form">
-           <label for="order_id">ID do Pedido</label>
-           <input type="text" id="order_id" name="order_id" readonly>
-           <!-- Outros campos do formulário -->
-           <button type="button" class="submit-btn">Salvar Alterações</button>
-       </form>
-       <script src="details_form.js"></script>
-   </body>
-   </html>
-   ```
-
-3. **list.js**: Este script JavaScript busca todos os pedidos da API e os exibe na tabela do arquivo `index.html`.
+3. **list.js**: Este script JavaScript busca todos os pedidos da API e os exibe na tabela do arquivo `index.html`. Veja o início do arquivo para saber onde atualizar a URL da API Gateway:
 
    ```javascript
    const API_BASE_URL = 'https://{SEU_API_GATEWAY_URL}/prod';
-
-   async function fetchOrders() {
-       console.log('Iniciando fetchOrders...');
-       try {
-           const response = await fetch(`${API_BASE_URL}/orders`);
-           if (!response.ok) throw new Error(`Erro ao buscar pedidos: ${response.statusText}`);
-
-           const data = await response.json();
-           const orders = Array.isArray(data) ? data : (data.body || []);
-           if (orders.length === 0) {
-               console.warn('Nenhum pedido encontrado.');
-               return;
-           }
-
-           const ordersBody = document.getElementById('orders-body');
-           ordersBody.innerHTML = ''; // Limpar tabela antes de preencher
-
-           orders.forEach(order => {
-               const row = document.createElement('tr');
-               row.innerHTML = `
-                   <td>${order.order_id}</td>
-                   <td>${new Date(order.order_date).toLocaleDateString('pt-BR')}</td>
-                   <td>${order.order_status}</td>
-                   <td>${order.customer.first_name} ${order.customer.last_name}</td>
-                   <td><a href="details.html?order_id=${order.order_id}">Ver Detalhes</a></td>
-               `;
-               ordersBody.appendChild(row);
-           });
-
-           console.log('Pedidos carregados com sucesso.');
-       } catch (error) {
-           console.error('Erro ao buscar pedidos:', error);
-       }
-   }
-
-   document.addEventListener('DOMContentLoaded', fetchOrders);
    ```
 
-4. **details_form.js**: Este script busca os detalhes de um pedido específico e preenche o formulário em `details.html`.
+   Certifique-se de substituir `{SEU_API_GATEWAY_URL}` pelo endpoint correto da API Gateway.
+
+4. **details_form.js**: Este script busca os detalhes de um pedido específico e preenche o formulário em `details.html`. Veja o início do arquivo para saber onde atualizar a URL da API Gateway:
 
    ```javascript
    const API_BASE_URL = 'https://{SEU_API_GATEWAY_URL}/prod';
-
-   async function fetchOrderDetails() {
-       const orderId = new URLSearchParams(window.location.search).get('order_id');
-       if (!orderId) {
-           console.error('ID do pedido não encontrado na URL.');
-           return;
-       }
-
-       console.log(`Buscando detalhes do pedido: ${orderId}...`);
-
-       try {
-           const response = await fetch(`${API_BASE_URL}/orders/${orderId}`);
-           if (!response.ok) throw new Error(`Erro ao buscar detalhes: ${response.statusText}`);
-
-           const order = await response.json();
-           console.log('Pedido recebido:', order);
-
-           // Preencher o formulário com os dados do pedido
-           document.getElementById('order_id').value = order.order_id;
-           document.getElementById('order_date').value = new Date(order.order_date).toLocaleDateString('pt-BR');
-           document.getElementById('order_status').value = order.order_status;
-           document.getElementById('customer_name').value = `${order.customer.first_name} ${order.customer.last_name}`;
-           document.getElementById('customer_email').value = order.customer.email;
-           document.getElementById('customer_phone').value = order.customer.phone;
-
-           // Preencher os itens do pedido
-           const itemsList = document.getElementById('items-list');
-           itemsList.innerHTML = ''; // Limpar itens existentes
-           order.items.forEach(item => {
-               const listItem = document.createElement('li');
-               listItem.innerHTML = `
-                   <div class="item-header">${item.description}</div>
-                   <div>Quantidade: ${item.quantity}</div>
-                   <div>Preço Unitário: R$ ${parseFloat(item.unit_price).toFixed(2)}</div>
-               `;
-               itemsList.appendChild(listItem);
-           });
-       } catch (error) {
-           console.error('Erro ao buscar detalhes do pedido:', error);
-       }
-   }
-
-   document.addEventListener('DOMContentLoaded', fetchOrderDetails);
    ```
+
+   Certifique-se de substituir `{SEU_API_GATEWAY_URL}` pelo endpoint correto da API Gateway.
+
+5. **styles.css**: Contém os estilos globais para padronizar o layout e melhorar a usabilidade do site.
 
 ### 1.2. Estilo e Layout
 
