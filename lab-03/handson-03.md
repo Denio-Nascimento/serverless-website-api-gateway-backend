@@ -63,7 +63,7 @@ Para garantir que o site **não fique público** e seja acessado de forma segura
 1. **Crie um Bucket S3**:
 
    - No console da AWS, acesse o Amazon S3 e crie um novo bucket para hospedar o site.
-   - **Nome do Bucket**: Escolha um nome exclusivo, como `sistema-pedidos-seusite`.
+   - **Nome do Bucket**: Escolha um nome exclusivo, como `translogistica-site-0001`.
    - **Região**: Selecione a região que melhor se adequa às suas necessidades.
    - **Configuração Pública**: **Mantenha o bucket privado** para restringir o acesso público.
 
