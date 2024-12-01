@@ -170,7 +170,7 @@ Nesta seção, vamos criar duas funções Lambda: uma para listar todos os pedid
 
    def lambda_handler(event, context):
        dynamodb = boto3.resource('dynamodb')
-       table_name = os.environ.get('TABLE_NAME', 'PedidosValidos')
+       table_name = os.environ.get('DYNAMODB_TABLE', 'PedidosValidos')
        table = dynamodb.Table(table_name)
        
        # Obter o order_id dos parâmetros de caminho
