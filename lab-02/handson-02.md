@@ -6,8 +6,7 @@ Esta documentação descreve os passos para criar e configurar um sistema de ped
 - [1: Criar a Função AWS Lambda](#1-criação-da-função-lambda)
   - [1.1. Criação do Lambda para Listar Pedidos](#11-criação-do-lambda-para-listar-pedidos)
   - [1.2. Criação do Lambda para Detalhes do Pedido](#12-criação-do-lambda-para-detalhes-do-pedido)
-  - [1.3. Criação das Políticas IAM](#14-criação-das-políticas-iam)
-  - [1.4. Teste das Funções Lambda](#13-teste-das-funções-lambda)
+  - [1.3. Teste das Funções Lambda](#13-teste-das-funções-lambda)
 - [2. Configuração do API Gateway](#2-configuração-do-api-gateway)
   - [2.1. Criação dos Métodos](#21-criação-dos-métodos)
   - [2.2. Configuração do Proxy e CORS](#22-configuração-do-proxy-e-cors)
@@ -107,7 +106,7 @@ Nesta seção, vamos criar duas funções Lambda: uma para listar todos os pedid
    - Na página da função Lambda, vá para a seção **Configuration** > **Permissions**.
    - Em **Execution role**, clique no nome da role (será algo como `put_orders-role-abc123`), o que abrirá a console do IAM em uma nova aba.
 
-2. **Adicionar Política de Acesso ao DynamoDB:**
+  6.1. **Adicionar Política de Acesso ao DynamoDB:**
 
    - Na página da role IAM, clique novamente em **Add permissions**.
 
@@ -247,7 +246,7 @@ Nesta seção, vamos criar duas funções Lambda: uma para listar todos os pedid
    - Na página da função Lambda, vá para a seção **Configuration** > **Permissions**.
    - Em **Execution role**, clique no nome da role (será algo como `put_orders-role-abc123`), o que abrirá a console do IAM em uma nova aba.
 
-6.1. **Adicionar Política de Acesso ao DynamoDB:**
+  6.1. **Adicionar Política de Acesso ao DynamoDB:**
 
    - Na página da role IAM, clique novamente em **Add permissions**.
 
