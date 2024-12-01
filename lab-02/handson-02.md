@@ -104,17 +104,17 @@ Nesta seção, vamos criar duas funções Lambda: uma para listar todos os pedid
 à role de execução da Lambda.
 
    - Na página da função Lambda, vá para a seção **Configuration** > **Permissions**.
-   - Em **Execution role**, clique no nome da role (será algo como `put_orders-role-abc123`), o que abrirá a console do IAM em uma nova aba.
+   - Em **Execution role**, clique no nome da role (será algo como `list_orders-role-abc123`), o que abrirá a console do IAM em uma nova aba.
 
-  6.1. **Adicionar Política de Acesso ao DynamoDB:**
+    6.1. **Adicionar Política de Acesso ao DynamoDB:**
 
-   - Na página da role IAM, clique novamente em **Add permissions**.
+     - Na página da role IAM, clique novamente em **Add permissions**.
 
-   - Escolha **Create inline policy**.
+     - Escolha **Create inline policy**.
 
-   - **Definir a Política:**
+     - **Definir a Política:**
 
-     - Selecione a aba **JSON** e cole o seguinte código, substituindo `<YOUR_REGION>` pela sua região (por exemplo, `us-east-1`) e `<YOUR_ACCOUNT_ID>` pelo ID da sua conta AWS (este pode ser encontrado no canto superior direito da console da AWS; clique no nome do usuário e o ID da conta aparecerá como 'Account ID: 123456789012'; é um número de 12 dígitos):
+       - Selecione a aba **JSON** e cole o seguinte código, substituindo `<YOUR_REGION>` pela sua região (por exemplo, `us-east-1`) e `<YOUR_ACCOUNT_ID>` pelo ID da sua conta AWS (este pode ser encontrado no canto superior direito da console da AWS; clique no nome do usuário e o ID da conta aparecerá como 'Account ID: 123456789012'; é um número de 12 dígitos):
 
        ```json
        {
@@ -244,7 +244,7 @@ Nesta seção, vamos criar duas funções Lambda: uma para listar todos os pedid
 à role de execução da Lambda.
 
    - Na página da função Lambda, vá para a seção **Configuration** > **Permissions**.
-   - Em **Execution role**, clique no nome da role (será algo como `put_orders-role-abc123`), o que abrirá a console do IAM em uma nova aba.
+   - Em **Execution role**, clique no nome da role (será algo como `get_order-role-abc123`), o que abrirá a console do IAM em uma nova aba.
 
   6.1. **Adicionar Política de Acesso ao DynamoDB:**
 
