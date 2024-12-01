@@ -113,8 +113,15 @@ Para garantir que o site **não fique público** e seja acessado de forma segura
    - Vai até o Amazon S3, clique no Bucket refernete ao site e acesse a seção **Permissões** e adicione a política fornecida pelo CloudFront.
    - Em **Bucket Policy** clique em **Edit** e cole, politica gerada e clique em **Save changes**.
    - Essa política permitirá que o CloudFront acesse o conteúdo do bucket, enquanto bloqueia o acesso direto ao S3.
+  
+4. **Desabilite o cache do CloudFront**:
+   - No console da AWS, acesse o Amazon CloudFront e crie uma nova distribuição.
+   - Clique no nome da Distribuição do cloud front que você criou.
+   - Entra aba **Invalidations** e clique em **Create invalidation**
+   - em Add object paths digite /*
+   - clique em **Create invalidation**
 
-4. **Configurações Adicionais da Distribuição CloudFront**:
+5. **Configurações Adicionais da Distribuição CloudFront**:
 
    - **Defina o Comportamento Padrão**:
      - **Viewer Protocol Policy**: Selecione **Redirect HTTP to HTTPS** para garantir que todo o tráfego seja criptografado.
@@ -123,8 +130,9 @@ Para garantir que o site **não fique público** e seja acessado de forma segura
    - **Configurações de Segurança**:
      - Habilite o SSL (TLS) para garantir a segurança das comunicações.
      - Se necessário, configure um certificado SSL personalizado através do AWS Certificate Manager (ACM).
+     - 
 
-5. **Testar a Distribuição CloudFront**:
+6. **Testar a Distribuição CloudFront**:
 
    - Após a distribuição ser implantada (isso pode levar alguns minutos), acesse a URL da distribuição CloudFront.
    - Verifique se o site está acessível e funcionando corretamente.
